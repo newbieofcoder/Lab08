@@ -18,13 +18,5 @@ public class SharedViewModel extends ViewModel {
     public void setItems(List<Note> newItems) {
         items.setValue(newItems);
     }
-
-    public void addItem(Note newItem) {
-        List<Note> currentItems = items.getValue();
-        if (currentItems != null) {
-            currentItems.add(newItem);
-            items.setValue(currentItems);
-        }
-    }
 }
 
