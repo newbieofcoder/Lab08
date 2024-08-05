@@ -22,6 +22,7 @@ import hoanglv.fpoly.thithu.models.Note;
 public class fragment2 extends Fragment {
     private NoteDAO dao;
     private SharedViewModel viewModel;
+    private static final String DATE_REGEX = "^(0[1-9]|[12][0-9]|3[01])[/-](0[1-9]|1[0-2])[/-](\\d{4})$\n";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +49,8 @@ public class fragment2 extends Fragment {
             String time = edtTime.getText().toString();
             if (note.isEmpty() || time.isEmpty()) {
                 Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+            } else if (!time.matches(DATE_REGEX)) {
+                Toast.makeText(getContext(), "Vui lòng nhập đúng định dạng ngày tháng", Toast.LENGTH_SHORT).show();
             } else {
                 dao = new NoteDAO(getContext());
                 dao.insert(new Note(time, note));

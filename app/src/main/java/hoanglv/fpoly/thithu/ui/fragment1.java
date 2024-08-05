@@ -84,12 +84,7 @@ public class fragment1 extends Fragment {
             }
         });
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        viewModel.getItems().observe(getViewLifecycleOwner(), new Observer<List<Note>>() {
-            @Override
-            public void onChanged(List<Note> notes) {
-                adapter.updateData(notes);
-            }
-        });
+        viewModel.getItems().observe(getViewLifecycleOwner(), notes -> adapter.updateData(notes));
         return view;
     }
 }
